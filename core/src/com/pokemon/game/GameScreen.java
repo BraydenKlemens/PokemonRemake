@@ -570,7 +570,7 @@ public class GameScreen implements Screen, InputProcessor {
 
 	public void Oak() {
 		// once left town and returned :)
-		words.add("Hey there!");
+		words.add("Hey there trainer!");
 		words.add("Looks like you and your pokemon have gotten much stronger!");
 		words.add("GoodLuck defeating the Gym in the big City!");
 		words.add("Misty is a tough gym leader!");
