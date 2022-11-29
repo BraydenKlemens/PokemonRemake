@@ -2,8 +2,7 @@ package com.pokemon.actions;
 
 public class RunnableAction extends Action {
 
-	private boolean run = false;
-	private Runnable runnable;
+	private final Runnable runnable;
 	
 	public RunnableAction(Runnable runnable) {
 		this.runnable = runnable;
@@ -11,11 +10,8 @@ public class RunnableAction extends Action {
 
 	@Override
 	public boolean run() {
-		if (!run) {
-			runnable.run();
-		}
-		run = true;
-		return run;
+		runnable.run();
+		return true;
 	}
 
 }

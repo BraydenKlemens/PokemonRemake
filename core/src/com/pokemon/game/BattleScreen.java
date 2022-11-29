@@ -594,7 +594,6 @@ public class BattleScreen implements Screen, InputProcessor {
 				defendingPokemon.setAttackMultiplier(defendingPokemon.getAttackMultiplier() - 0.1f);
 
 				// delay before commentator
-				actionHandler.addAction(new DelayAction(1), actionHandler.getIndex() + 2);
 				actionHandler.addAction(new RunnableAction(new Runnable() {
 
 					@Override

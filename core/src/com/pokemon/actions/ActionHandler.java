@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ActionHandler {
 
-	List<Action> actions = new ArrayList<Action>();
+	List<Action> actions = new ArrayList<>();
 
 	private int index = 0;
 
@@ -17,9 +17,7 @@ public class ActionHandler {
 			return true;
 		if (actions.get(index).run()) {
 			index++;
-			if (index >= actions.size()) {
-				return true;
-			}
+			return index >= actions.size();
 		}
 		return false;
 	}

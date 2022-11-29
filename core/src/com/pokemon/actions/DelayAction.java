@@ -7,7 +7,7 @@ public class DelayAction extends Action {
 boolean run = false;
 	
 	private float time = 0;
-	private float duration = 0;
+	private final float duration;
 
 	public DelayAction(float duration) {
 		this.duration = duration;
@@ -19,7 +19,6 @@ boolean run = false;
 		if (time < duration) {
 			time += delta;
 			if (time < duration) run = false;
-			delta = time - duration;
 		} else {
 			run = true;
 		}
