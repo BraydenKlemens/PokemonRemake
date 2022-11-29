@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" nextobjectid="22">
+ <tileset firstgid="1" name="pokecenter2" tilewidth="16" tileheight="16" tilecount="150" columns="15">
+  <image source="../../../pokecenter2.png" width="240" height="160"/>
+ </tileset>
+ <layer name="ground" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzt1NdXD3AAxuEiqymlQmkooxSyaRkNbVIyGoRQIkqSioyMREV/r6crt33PyVW/95zn+nP3RkVFtt73ZQ2sphHNBjYSwyY2s4WtbCOWOOJJIJGkgMZ2ktlBCqnsJI10MtjFbvaQSRZ7AxrZ5JBLHvvIp4D9HOAghyikiMMUBzRKOMJRjlHKcU5wklOc5gxnOcd5ygIa5VRQSRUXuMglLlNNDbXUcYV6GgIajTTRTAutXOUabVynnQ5u0MlNbgU0bnOHLrrpoZe73KOP+zzgIf084nFA4wkDDPKUIZ7xnGFe8JIRRnnFGK8DGuO8YYK3TDLFNO94zwwf+MgnPjMb0FjxlW98Z44fzPOTXyywyBK/+cNyYON/fklkkUX2b38BArlI7g==
+  </data>
+ </layer>
+ <objectgroup name="walls">
+  <object id="1" name="wall" x="153" y="128" width="93" height="26.5"/>
+  <object id="2" name="wall" x="242.5" y="114" width="20" height="16"/>
+  <object id="3" name="wall" x="264.5" y="111.5" width="31" height="15"/>
+  <object id="4" name="wall" x="305.364" y="114.171" width="26.5" height="14" rotation="45.1323"/>
+  <object id="5" name="wall" x="312.5" y="121.5" width="20.5" height="110"/>
+  <object id="6" name="wall" x="294.424" y="249.562" width="29" height="18" rotation="-45.5982"/>
+  <object id="7" name="wall" x="103.5" y="248.5" width="209" height="7.5"/>
+  <object id="9" name="wall" x="88.2827" y="232.344" width="29" height="18" rotation="-314.408"/>
+  <object id="10" name="wall" x="65.5" y="120" width="22" height="117"/>
+  <object id="13" name="wall" x="104" y="117" width="50" height="16.5"/>
+  <object id="14" name="wall" x="71.5792" y="127.642" width="32" height="17.5" rotation="-45.8725"/>
+  <object id="15" name="wall" x="267" y="201" width="27" height="28"/>
+  <object id="18" name="wall" x="104" y="196.5" width="15" height="13.5"/>
+  <object id="19" name="wall" x="82.7383" y="183.1" width="35.5" height="22.1377" rotation="26.6234"/>
+ </objectgroup>
+ <objectgroup name="triggers">
+  <object id="20" name="leave" x="184.5" y="245.5" width="32" height="8"/>
+  <object id="21" name="Revive" x="200.5" y="148" width="13.5" height="12.5"/>
+ </objectgroup>
+</map>

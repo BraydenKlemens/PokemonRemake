@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" nextobjectid="24">
+ <tileset firstgid="1" name="oaksLab" tilewidth="16" tileheight="16" tilecount="210" columns="15">
+  <image source="../../../oaksLab.png" width="240" height="224"/>
+ </tileset>
+ <layer name="ground" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzt1EVPEHAAxmFUbLG7u8UOVGywA8XA7m5sBcXAVmxRjIvd3V2IgfqJfLx78L/h5hzv9px/tzciIn//8mLzwJ80ClCQQkRSmCIUpRjFKUFJShFFacoENMpSjvJUoCKVqEwVqlKN6tSgJrWoHdCoQ13qUZ8GNKQRjWlCU5rRnBa0pFVAI5rWtKEt7WhPBzrSic50IYaudKN7QOOXHvSkF73pQ1/6EUc8/RnAQAYxOKAxhKEMYzgjSGAko0hkNGMYyziSGB/QmMBEJjGZKUxlGtOZwUxmMZs5zGVeQGM+C1jIIhazhKUsYznJrGAlq1jNmoDGWtaxng2kkMpGNpHGZrawlW2ksz2gsYOd7GI3e9jLPvaTwQEOcojDHOFoQOMYx8nkBCfJ4hSnOcPZ3zgX0DjPBS5yictc4SrXuM4NbnKL29zhbkDjHvd5wEMe8ZgnPOUZz3nBS17xmjcBjbe84z0fyOYjOXziM1/4Si7f+M6PgMbf/vb8/f/7CfCAZUg=
+  </data>
+ </layer>
+ <objectgroup name="walls">
+  <object id="1" name="wall" x="225" y="156" width="45.5" height="11.5"/>
+  <object id="2" name="wall" x="93.5" y="85.5" width="98" height="29"/>
+  <object id="3" name="wall" x="88" y="113" width="7.5" height="182.5"/>
+  <object id="4" name="wall" x="192.5" y="88.5" width="48" height="19"/>
+  <object id="5" name="wall" x="241" y="87.5" width="63.5" height="26.5"/>
+  <object id="6" name="wall" x="113" y="148.5" width="29" height="21.5"/>
+  <object id="9" name="wall" x="305" y="88" width="13.5" height="207"/>
+  <object id="10" name="wall" x="95.5" y="270" width="15.5" height="25.5"/>
+  <object id="11" name="wall" x="287.5" y="272" width="16.5" height="23.5"/>
+  <object id="13" name="wall" x="97.5" y="208.5" width="78" height="21"/>
+  <object id="15" name="wall" x="225" y="210" width="78.5" height="19"/>
+  <object id="19" name="wall" x="213.5" y="296.5" width="86" height="14.5"/>
+  <object id="20" name="wall" x="101" y="296.5" width="86" height="14.5"/>
+ </objectgroup>
+ <objectgroup name="triggers">
+  <object id="16" name="leave" x="187.5" y="296" width="25.5" height="3.5"/>
+  <object id="23" name="speach" x="185.5" y="129.5" width="31" height="29"/>
+ </objectgroup>
+</map>

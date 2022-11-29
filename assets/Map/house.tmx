@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" nextobjectid="43">
+ <tileset firstgid="1" name="home" tilewidth="16" tileheight="16" tilecount="225" columns="25">
+  <image source="../../../home.png" width="407" height="153"/>
+ </tileset>
+ <layer name="ground layer" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1fXqF1YAxuFjzJjYNdSZw87ZhbmpY7MVO7ELO7HdxE7swpox0dliJ+rMYeel+NyD/OD45bzwXMDnrzeEtLSs3c9fKZZlWkc2spODnHxHLnKTh7x8T74Qd0cpSlOGHylLOcpTgYpU4qcQd0d9GtCQRjSmCU1pRnNa0DLE3fE7f9CZLnSlG93pQU960TvE3TGCkYxiNGMYyzjGM4GJTApxd8xnAQtZxGKWsJRl/MlfLA9xd2xhK9vYzg52sovd7GEv+0LcHSc5xb+c5gxnOcd5LnCRSyHujvs84CH/8YjHPOEpz3jO/yHujkz589QRx1JH6siKpY7UkRVLHXF25KcABSlEYYpQlGIUpwQl+SHE21GZKlSlGtWpQU1qUZs61KVeiLejFa1pQ1va0Z5f+JUOdKQTv4V4O/rQl370ZwADGcRghjCUYQwP8XZMZgpTmcZ0ZjCTWcxmDnOZF+LtWMFKVrGaNaxlHevZwEY2sTnE27GfAxzkEIf5myMc5RjH+YcTId6Oy1zhKte4zg1ucovb3OEu90K8HS94ySte84a3vOM9H/jIJz6HeDsy5c+/9Y60tLS0tLS0tLS0TNsX1/GZrw==
+  </data>
+ </layer>
+ <objectgroup name="walls">
+  <object id="10" name="wall" x="68.0272" y="389.44" width="206.578" height="14.3544"/>
+  <object id="12" name="wall" x="265.244" y="391.937" width="14.3544" height="152.281"/>
+  <object id="13" name="wall" x="79.2611" y="544.218" width="206.578" height="8.11334"/>
+  <object id="14" name="wall" x="63.0344" y="398.802" width="16.8508" height="152.281"/>
+  <object id="16" name="wall" x="156.65" y="472.446" width="26.8364" height="17.4749"/>
+  <object id="17" name="wall" x="80.5093" y="406.291" width="49.3041" height="26.2123"/>
+  <object id="18" name="wall" x="131.062" y="408.163" width="91.119" height="13.7303"/>
+  <object id="19" name="wall" x="152.905" y="423.766" width="16.2267" height="10.6097"/>
+  <object id="20" name="wall" x="250.889" y="508.644" width="11.858" height="23.0918"/>
+  <object id="21" name="wall" x="79.2611" y="505.523" width="8.73744" height="26.8364"/>
+  <object id="22" name="wall" x="131.062" y="432.503" width="4.36872" height="9.36154"/>
+  <object id="24" name="wall" x="216.804" y="408.12" width="49.3041" height="14.3544" rotation="-18.226"/>
+  <object id="25" name="wall" x="232.999" y="437.871" width="35.9857" height="13.7303" rotation="-24.2613"/>
+  <object id="27" name="wall" x="69.8995" y="224.677" width="196.592" height="9.36154"/>
+  <object id="28" name="wall" x="256.506" y="78.637" width="13.1062" height="147.912"/>
+  <object id="29" name="wall" x="68.0272" y="51.8005" width="196.592" height="33.0775"/>
+  <object id="30" name="wall" x="66.1549" y="71.7718" width="18.099" height="156.026"/>
+  <object id="32" name="wall" x="200.337" y="138.551" width="26.8364" height="2.49641"/>
+  <object id="33" name="wall" x="198.465" y="116.083" width="1.87231" height="23.7159"/>
+  <object id="34" name="wall" x="166.635" y="149.785" width="12.4821" height="11.2339"/>
+  <object id="35" name="wall" x="84.878" y="86.1262" width="78.0129" height="24.9641"/>
+  <object id="36" name="wall" x="163.515" y="86.7503" width="92.3672" height="16.8508"/>
+ </objectgroup>
+ <objectgroup name="triggers">
+  <object id="37" name="down" x="207.202" y="119.828" width="12.4821" height="13.1062"/>
+  <object id="39" name="leave" x="118.58" y="541.097" width="23.7159" height="2.49641"/>
+  <object id="40" name="up" x="230.918" y="428.135" width="10.6097" height="19.9713"/>
+  <object id="41" name="speach" x="187.231" y="460.588" width="14.9783" height="35.5741"/>
+  <object id="42" name="speach" x="203.458" y="468.701"/>
+ </objectgroup>
+</map>
