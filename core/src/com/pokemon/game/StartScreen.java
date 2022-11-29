@@ -18,7 +18,7 @@ import com.badlogic.gdx.utils.Timer;
 public class StartScreen implements Screen, InputProcessor {
 
 	// global variables
-	private GameFreak game;
+	private final GameFreak game;
 	private Music music, music2;
 	private Sprite sprite;
 	private Sprite oak;
@@ -31,7 +31,7 @@ public class StartScreen implements Screen, InputProcessor {
 	private String text = "";
 	private Sound click;
 	private boolean lock = false;
-	private Queue<String> words = new LinkedList<String>();
+	private final Queue<String> words = new LinkedList<>();
 
 	public StartScreen(GameFreak game) {
 		this.game = game;
@@ -73,7 +73,7 @@ public class StartScreen implements Screen, InputProcessor {
 		}
 
 		// print text on screen - handles all text
-		if (lockPrint == true && !words.isEmpty()) {
+		if (lockPrint && !words.isEmpty()) {
 			printText(words.remove());
 		}
 
@@ -85,7 +85,7 @@ public class StartScreen implements Screen, InputProcessor {
 				draw = true;
 				lock = true;
 			}
-		} else if (Gdx.input.isKeyPressed(Input.Keys.B) && lock==true && words.isEmpty()) {
+		} else if (Gdx.input.isKeyPressed(Input.Keys.B) && lock && words.isEmpty()) {
 			game.setScreen(game.gameScreen);
 			music2.stop();
 		}
@@ -135,13 +135,13 @@ public class StartScreen implements Screen, InputProcessor {
 		words.add("Hello there, glad to meet you");
 		words.add("Welcome to the world of POKeMON");
 		words.add("My name is OAK");
-		words.add("People refer to me as the Pokemon Profesor");
+		words.add("People refer to me as the Pokemon Professor");
 		words.add("This world....");
 		words.add("is inhabited far and wide by creatures called Pokemon");
 		words.add("Some people have them as pets");
 		words.add("Others use them to battle..");
 		words.add("As for myself.. I study them as a profession!");
-		words.add("Rememeber press SPACE to talk to someone..");
+		words.add("Remember press SPACE to talk to someone..");
 		words.add("Press B to keep talking...");
 		words.add("Press ENTER to claim items");
 		words.add(" ");

@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 public class NurseJoy implements ICharacter{
 	
 	//globals
-	private Sprite sprite;
+	private final Sprite sprite;
 	
 	public NurseJoy(){
 		//sprite creation
@@ -19,7 +19,7 @@ public class NurseJoy implements ICharacter{
 
 	@Override
 	public ArrayList<String> getText(Starters stater) {
-		ArrayList<String> text = new ArrayList<String>();
+		ArrayList<String> text = new ArrayList<>();
 		text.add("Welcome to the Pokemon Center!");
 		text.add("Would you like me to heal you Pokemon");
 		text.add("back to perfect health?");

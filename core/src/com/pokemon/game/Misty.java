@@ -10,8 +10,8 @@ import com.badlogic.gdx.math.Rectangle;
 public class Misty implements ICharacter {
 
 	// globals
-	private Sprite sprite;
-	private Pokemon pokemon;
+	private final Sprite sprite;
+	private final Pokemon pokemon;
 
 	public Misty() {
 		sprite = new Sprite(new Texture("FSEStuff/Misty.png"));
@@ -23,7 +23,7 @@ public class Misty implements ICharacter {
 
 	@Override
 	public ArrayList<String> getText(Starters stater) {
-		ArrayList<String> text = new ArrayList<String>();
+		ArrayList<String> text = new ArrayList<>();
 		text.add("lets Battle!");
 		return text;
 	}

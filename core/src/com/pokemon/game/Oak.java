@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Rectangle;
 public class Oak implements ICharacter {
 	
 	//globals
-	private Sprite sprite;
+	private final Sprite sprite;
 
 	public Oak() {
 		//sprite creation
@@ -32,16 +32,17 @@ public class Oak implements ICharacter {
 
 	@Override
 	public ArrayList<String> getText(Starters starter) {
-		ArrayList<String> text = new ArrayList<String>();
+		ArrayList<String> text = new ArrayList<>();
 		if (!starter.hasPokemon()) {
-			text.add("Hello Klem! nice to see you again...");
+			text.add("Hello there! nice to see you again...");
 			text.add("I have 3 Pokemon here for you");
 			text.add("The choice is yours!");
 		} else {
-			text.add("Klem obtained the Pokeball from professor Oak.");
+			text.add("You obtained the Poke-ball from professor Oak.");
 			text.add("Wonderful choice, " + starter.getName() + " will be a joy to raise!");
-			text.add("Now that you have your first POKeMON");
-			text.add("You should go see your mom before you leave!");
+			text.add("Now that you have your first POKeMON...");
+			text.add("you should go see your mom before you leave!");
+			text.add("She may have something to offer!");
 		}
 		return text;
 	}

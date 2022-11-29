@@ -3,10 +3,10 @@ package com.pokemon.game;
 public class Move {
 
 	// globals
-	private Type type;
+	private final Type type;
 	private Category category;
-	private float power = 0;
-	private String name = "";
+	private float power;
+	private String name;
 
 	// create static moves allow access
 	public static Move nullMove = new Move("", Type.NORMAL, Category.PASSIVE, 0);

@@ -12,8 +12,8 @@ public interface ICharacter {
 	 * force speech
 	 */
 	
-	public ArrayList<String> getText(Starters stater);
+	ArrayList<String> getText(Starters stater);
 	
-	public Batch draw(Batch batch, String location);
+	Batch draw(Batch batch, String location);
 
 }

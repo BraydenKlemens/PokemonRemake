@@ -10,16 +10,16 @@ public class Pokemon {
 	//global variabes
 	private Sprite sprite;
 	public Texture back, front;
-	private int health = 0;
-	private float defence = 0;
-	private float attack = 0;
-	private int maxHealth = 0;
+	private int health;
+	private final float defence;
+	private float attack;
+	private final int maxHealth;
 	private float attackMultiplier = 1;
-	private int level = 5;
-	private Type type;
-	private String name = "";
+	private final int level;
+	private final Type type;
+	private final String name;
 	private Move[] moves = new Move[4];
-	private int w, h;
+	private final int w, h;
 
 	// create static pokemon allows access to them - wild pokemon stats
 	public static Pokemon bulbasaur = new Pokemon(new Texture("FSEStuff/BulbasaurFront.png"),

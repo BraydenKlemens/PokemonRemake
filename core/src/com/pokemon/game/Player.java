@@ -1,6 +1,7 @@
 package com.pokemon.game;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -21,30 +22,18 @@ public class Player {
 	// Row -
 	// Column |
 
-	// Up
-	private TextureRegion[] walkUpFrames;
-	private Animation walkUpAnimation;
-	private Texture textureUp;
+	private final Animation<TextureRegion> walkUpAnimation;
 
-	// Down
-	private TextureRegion[] walkDownFrames;
-	private Animation walkDownAnimation;
-	private Texture textureDown;
+	private final Animation<TextureRegion> walkDownAnimation;
 
-	// Right
-	private TextureRegion[] walkRightFrames;
-	private Animation walkRightAnimation;
-	private Texture textureRight;
+	private final Animation<TextureRegion> walkRightAnimation;
 
-	// Left
-	private TextureRegion[] walkLeftFrames;
-	private Animation walkLeftAnimation;
-	private Texture textureLeft;
-	
+	private final Animation<TextureRegion> walkLeftAnimation;
+
 	float frames = 0.15f;
 	
 	//players pokemon
-	private ArrayList<Pokemon> pokemon = new ArrayList<Pokemon>();
+	private final ArrayList<Pokemon> pokemon = new ArrayList<>();
 
 	/**
 	 * @return the pokemon
@@ -57,9 +46,10 @@ public class Player {
 
 		sprite = new Sprite();
 		// walk Up Frame Split
-		textureUp = new Texture("Player/red4.png");
-		TextureRegion[][] up = TextureRegion.split(textureUp, textureUp.getWidth() / 4, textureUp.getHeight() / 1);
-		walkUpFrames = new TextureRegion[4];
+		Texture textureUp = new Texture("Player/red4.png");
+		TextureRegion[][] up = TextureRegion.split(textureUp, textureUp.getWidth() / 4, textureUp.getHeight());
+		// Up
+		TextureRegion[] walkUpFrames = new TextureRegion[4];
 		int index = 0;
 		for (int i = 0; i < 1; i++) {
 			for (int j = 0; j < 4; j++) {
@@ -68,10 +58,11 @@ public class Player {
 		}
 
 		// Walk Down Frame Split
-		textureDown = new Texture("Player/red1.png");
+		Texture textureDown = new Texture("Player/red1.png");
 		TextureRegion[][] down = TextureRegion.split(textureDown, textureDown.getWidth() / 4,
-				textureDown.getHeight() / 1);
-		walkDownFrames = new TextureRegion[4];
+				textureDown.getHeight());
+		// Down
+		TextureRegion[] walkDownFrames = new TextureRegion[4];
 		int index2 = 0;
 		for (int i = 0; i < 1; i++) {
 			for (int j = 0; j < 4; j++) {
@@ -80,10 +71,11 @@ public class Player {
 		}
 
 		// Walk Right Frame Split
-		textureRight = new Texture("Player/red3.png");
+		Texture textureRight = new Texture("Player/red3.png");
 		TextureRegion[][] right = TextureRegion.split(textureRight, textureRight.getWidth() / 4,
-				textureRight.getHeight() / 1);
-		walkRightFrames = new TextureRegion[4];
+				textureRight.getHeight());
+		// Right
+		TextureRegion[] walkRightFrames = new TextureRegion[4];
 		int index3 = 0;
 		for (int i = 0; i < 1; i++) {
 			for (int j = 0; j < 4; j++) {
@@ -92,10 +84,11 @@ public class Player {
 		}
 
 		// Walk Left Frame Split
-		textureLeft = new Texture("Player/red2.png");
+		Texture textureLeft = new Texture("Player/red2.png");
 		TextureRegion[][] left = TextureRegion.split(textureLeft, textureLeft.getWidth() / 4,
-				textureLeft.getHeight() / 1);
-		walkLeftFrames = new TextureRegion[4];
+				textureLeft.getHeight());
+		// Left
+		TextureRegion[] walkLeftFrames = new TextureRegion[4];
 		int index4 = 0;
 		for (int i = 0; i < 1; i++) {
 			for (int j = 0; j < 4; j++) {
@@ -104,14 +97,14 @@ public class Player {
 		}
 		
 		//set frames
-		walkUpAnimation = new Animation(frames, walkUpFrames);
-		walkDownAnimation = new Animation(frames, walkDownFrames);
-		walkRightAnimation = new Animation(frames, walkRightFrames);
-		walkLeftAnimation = new Animation(frames, walkLeftFrames);
+		walkUpAnimation = new Animation<>(frames, walkUpFrames);
+		walkDownAnimation = new Animation<>(frames, walkDownFrames);
+		walkRightAnimation = new Animation<>(frames, walkRightFrames);
+		walkLeftAnimation = new Animation<>(frames, walkLeftFrames);
 		
 		//get the frame
 		stateTime = 0f;
-		currentFrame = (TextureRegion) walkUpAnimation.getKeyFrame(stateTime);
+		currentFrame = walkUpAnimation.getKeyFrame(stateTime);
 		sprite = new Sprite(currentFrame);
 
 	}
@@ -128,33 +121,33 @@ public class Player {
 
 	public void updatePlayer() {
 		//set the frame based on the key pressed and state time
-		if (stance == "walkUp" && Gdx.input.isKeyPressed(Input.Keys.W)) {
+		if (Objects.equals(stance, "walkUp") && Gdx.input.isKeyPressed(Input.Keys.W)) {
 			stateTime += Gdx.graphics.getDeltaTime();
 			if (stateTime > walkUpAnimation.getAnimationDuration()) {
 				stateTime -= walkUpAnimation.getAnimationDuration();
 			}
-			currentFrame = (TextureRegion) walkUpAnimation.getKeyFrame(stateTime);
+			currentFrame = walkUpAnimation.getKeyFrame(stateTime);
 
-		} else if (stance == "walkDown" && Gdx.input.isKeyPressed(Input.Keys.S)) {
+		} else if (Objects.equals(stance, "walkDown") && Gdx.input.isKeyPressed(Input.Keys.S)) {
 			stateTime += Gdx.graphics.getDeltaTime();
 			if (stateTime > walkDownAnimation.getAnimationDuration()) {
 				stateTime -= walkDownAnimation.getAnimationDuration();
 			}
-			currentFrame = (TextureRegion) walkDownAnimation.getKeyFrame(stateTime);
+			currentFrame = walkDownAnimation.getKeyFrame(stateTime);
 
-		} else if (stance == "walkRight" && Gdx.input.isKeyPressed(Input.Keys.D)) {
+		} else if (Objects.equals(stance, "walkRight") && Gdx.input.isKeyPressed(Input.Keys.D)) {
 			stateTime += Gdx.graphics.getDeltaTime();
 			if (stateTime > walkRightAnimation.getAnimationDuration()) {
 				stateTime -= walkRightAnimation.getAnimationDuration();
 			}
-			currentFrame = (TextureRegion) walkRightAnimation.getKeyFrame(stateTime);
+			currentFrame = walkRightAnimation.getKeyFrame(stateTime);
 
-		} else if (stance == "walkLeft" && Gdx.input.isKeyPressed(Input.Keys.A)) {
+		} else if (Objects.equals(stance, "walkLeft") && Gdx.input.isKeyPressed(Input.Keys.A)) {
 			stateTime += Gdx.graphics.getDeltaTime();
 			if (stateTime > walkLeftAnimation.getAnimationDuration()) {
 				stateTime -= walkLeftAnimation.getAnimationDuration();
 			}
-			currentFrame = (TextureRegion) walkLeftAnimation.getKeyFrame(stateTime);
+			currentFrame = walkLeftAnimation.getKeyFrame(stateTime);
 		}
 		sprite.setRegion(currentFrame);
 	}

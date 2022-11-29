@@ -29,31 +29,31 @@ public class BattleScreen implements Screen, InputProcessor {
 	private BitmapFont text;
 	private BitmapFont comm;
 	private Button button1, button2, button3, button4;
-	private Pokemon poke1, poke2;
+	private final Pokemon poke1, poke2;
 
 	// Lists
-	private Queue<String> words = new LinkedList<String>();
-	private ArrayList<BattleButton> fight = new ArrayList<BattleButton>();
-	private ArrayList<HealthBar> healthbars = new ArrayList<HealthBar>();
+	private final Queue<String> words = new LinkedList<>();
+	private final ArrayList<BattleButton> fight = new ArrayList<>();
+	private final ArrayList<HealthBar> healthbars = new ArrayList<>();
 
 	// booleans ints
 	private boolean moveScreenOpen = false;
 	private boolean useAttack = false;
-	private boolean play;
+	private boolean play = false;
 	private boolean lockPrint = true;
 	private int index = 0;
-	private int healthbarWidth = 145;
+	private final int healthbarWidth = 145;
 
 	// audio
 	private Music battle, wild;
 	private Sound click, run;
 
 	// events
-	private ActionHandler actionHandler = new ActionHandler();
+	private final ActionHandler actionHandler = new ActionHandler();
 	private boolean doEvents = false;
 
 	// game
-	private GameFreak game;
+	private final GameFreak game;
 
 	public BattleScreen(GameFreak game, Pokemon poke1, Pokemon poke2) {
 		this.game = game;
@@ -113,7 +113,7 @@ public class BattleScreen implements Screen, InputProcessor {
 		// sets up moves
 		loadMoves();
 
-		// input proccessor
+		// input processor
 		Gdx.input.setInputProcessor(this);
 	}
 
@@ -132,11 +132,7 @@ public class BattleScreen implements Screen, InputProcessor {
 
 		// choose random battle song
 		int rand = (int) Math.floor(Math.random() * 3);
-		if (rand == 1) {
-			play = true;
-		} else {
-			play = false;
-		}
+		play = rand == 1;
 	}
 
 	@Override
@@ -163,7 +159,7 @@ public class BattleScreen implements Screen, InputProcessor {
 		updateOwnerHealthBars(poke1);
 		updateDefenderHealthBars(poke2);
 
-		// if do events it runs the events
+		// if true events it runs the events
 		draw();
 		doTurn();
 	}
@@ -179,6 +175,7 @@ public class BattleScreen implements Screen, InputProcessor {
 					useAttack = true;
 					lockPrint = true;
 					words.add(poke1.getName() + " fainted... ");
+					assert words.peek() != null;
 					actionHandler.addAction(new DelayAction(words.peek().length() * 0.035f + 3f),
 							actionHandler.getIndex() + 1);
 					actionHandler.addAction(new RunnableAction(new Runnable() {
@@ -198,6 +195,7 @@ public class BattleScreen implements Screen, InputProcessor {
 					useAttack = true;
 					lockPrint = true;
 					words.add(poke2.getName() + " fainted... " + poke1.getName() + " wins!");
+					assert words.peek() != null;
 					actionHandler.addAction(new DelayAction(words.peek().length() * 0.035f + 3f),
 							actionHandler.getIndex() + 1);
 					actionHandler.addAction(new RunnableAction(new Runnable() {
@@ -213,7 +211,7 @@ public class BattleScreen implements Screen, InputProcessor {
 	}
 
 	public void doTurn() {
-		// if do events it runs the events, false at the end of events
+		//If true events it runs the events, false at the end of events
 		if (doEvents) {
 			if (actionHandler.run()) {
 				doEvents = false;
@@ -231,14 +229,14 @@ public class BattleScreen implements Screen, InputProcessor {
 		textBubble.draw(game.batch);
 		bar1.draw(game.batch);
 		bar2.draw(game.batch);
-		for (int i = 0; i < healthbars.size(); i++) {
-			healthbars.get(i).draw(game.batch);
+		for (HealthBar healthbar : healthbars) {
+			healthbar.draw(game.batch);
 		}
 		// health bars
 		ownerHealth.draw(game.batch);
 		defenderHealth.draw(game.batch);
 
-		// move/fight intefaces
+		// move/fight interfaces
 		if (!useAttack) {
 			fightInterface.draw(game.batch);
 			if (moveScreenOpen) {
@@ -258,7 +256,7 @@ public class BattleScreen implements Screen, InputProcessor {
 		poke2.draw(game.batch);
 		text.draw(game.batch, poke1.getName(), 460, 230);
 		text.draw(game.batch, poke2.getName(), 55, 422);
-		text.draw(game.batch, String.valueOf(poke1.getHealth()) + " / " + String.valueOf(poke1.getMaxHealth()), 610,
+		text.draw(game.batch, poke1.getHealth() + " / " + poke1.getMaxHealth(), 610,
 				175);
 		// text
 		if (!moveScreenOpen || useAttack) {
@@ -356,7 +354,7 @@ public class BattleScreen implements Screen, InputProcessor {
 					public void run() {
 						// play words
 						lockPrint = true;
-						useAttack = words.add(poke1.getName() + " got away safley!");
+						useAttack = words.add(poke1.getName() + " got away safely!");
 					}
 				}));
 
@@ -385,7 +383,8 @@ public class BattleScreen implements Screen, InputProcessor {
 				click.play();
 				useAttack = true;
 				lockPrint = true;
-				words.add("You dont have any other Pokemon!");
+				words.add("You don't have any other Pokemon!");
+				assert words.peek() != null;
 				Timer.schedule(new Timer.Task() {
 
 					@Override
@@ -394,7 +393,7 @@ public class BattleScreen implements Screen, InputProcessor {
 						lockPrint = true;
 						words.add("what will " + poke1.getName() + " do?");
 					}
-					// waits untill text is done
+					// waits until text is done
 				}, words.peek().length() * 0.035f + 0.1f);
 			}
 		});
@@ -406,7 +405,8 @@ public class BattleScreen implements Screen, InputProcessor {
 				click.play();
 				useAttack = true;
 				lockPrint = true;
-				words.add("you dont have any items!");
+				words.add("you don't have any items!");
+				assert words.peek() != null;
 				Timer.schedule(new Timer.Task() {
 
 					@Override
@@ -415,7 +415,7 @@ public class BattleScreen implements Screen, InputProcessor {
 						lockPrint = true;
 						words.add("what will " + poke1.getName() + " do?");
 					}
-					// waits untill text is done
+					// waits until text is done
 				}, words.peek().length() * 0.035f + 0.1f);
 			}
 		});
@@ -525,7 +525,7 @@ public class BattleScreen implements Screen, InputProcessor {
 	 */
 	public Action getComputerAction() {
 		// computer uses a random move based of what it has
-		RunnableAction action = new RunnableAction(new Runnable() {
+		return new RunnableAction(new Runnable() {
 			@Override
 			public void run() {
 				int computerMove = (int) Math.floor(Math.random() * poke2.getNumOfMoves());
@@ -535,7 +535,6 @@ public class BattleScreen implements Screen, InputProcessor {
 				}
 			}
 		});
-		return action;
 	}
 
 	/**
@@ -547,6 +546,7 @@ public class BattleScreen implements Screen, InputProcessor {
 		// displays used move due to clicking on move earlier
 		lockPrint = true;
 		words.add(attackingPokemon.getName() + " used " + move.getName() + "!");
+		assert words.peek() != null;
 		actionHandler.addAction(new DelayAction(words.peek().length() * 0.035f + 0.5f), actionHandler.getIndex() + 1);
 
 		switch (move.getCategory()) {
@@ -559,7 +559,7 @@ public class BattleScreen implements Screen, InputProcessor {
 				defendingPokemon.damage(damage);
 			}
 
-			// checks and displays the effectivness
+			// checks and displays the effectiveness
 			if (effective == 1.5) {
 				actionHandler.addAction(new RunnableAction(new Runnable() {
 
@@ -567,6 +567,7 @@ public class BattleScreen implements Screen, InputProcessor {
 					public void run() {
 						lockPrint = true;
 						words.add("It's super effective!");
+						assert words.peek() != null;
 						actionHandler.addAction(new DelayAction(words.peek().length() * 0.035f + 0.5f),
 								actionHandler.getIndex() + 3);
 					}
@@ -579,6 +580,7 @@ public class BattleScreen implements Screen, InputProcessor {
 					public void run() {
 						lockPrint = true;
 						words.add("It's not very effective...");
+						assert words.peek() != null;
 						actionHandler.addAction(new DelayAction(words.peek().length() * 0.035f + 0.5f),
 								actionHandler.getIndex() + 3);
 					}
@@ -599,6 +601,7 @@ public class BattleScreen implements Screen, InputProcessor {
 					public void run() {
 						lockPrint = true;
 						words.add(defendingPokemon.getName() + "'s attack fell!");
+						assert words.peek() != null;
 						actionHandler.addAction(new DelayAction(words.peek().length() * 0.035f + 0.5f),
 								actionHandler.getIndex() + 3);
 					}
@@ -617,15 +620,14 @@ public class BattleScreen implements Screen, InputProcessor {
 	 * @param defense
 	 * @param power
 	 * @param level
-	 * @return
+	 * @return float
 	 */
 	public float getDamage(float attack, float effectiveness, float defense, float power, float level) {
 		// damage ratios
 		float critical = (float) Math.floor(((Math.random() + 1.1)));
 		float range = (float) (Math.random() * 0.15 + 0.85);
 		float modifier = effectiveness * critical * range;
-		float damage = (((2 * level + 10) / 250) * (attack / defense) * power + 2) * modifier;
-		return damage;
+		return (((2 * level + 10) / 250) * (attack / defense) * power + 2) * modifier;
 	}
 
 	@Override

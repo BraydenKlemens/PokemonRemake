@@ -3,12 +3,12 @@ package com.pokemon.game;
 public enum Names {
 	BULBASAUR(Type.GRASS), SQUIRTLE(Type.WATER), CHARMANDER(Type.FIRE);
 
-	private Type type;
+	private final Type type;
 
 	/**
 	 * @param type
 	 */
-	private Names(Type type) {
+	Names(Type type) {
 		this.type = type;
 	}
 

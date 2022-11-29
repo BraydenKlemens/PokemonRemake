@@ -27,8 +27,6 @@ import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import com.pokemon.game.Player;
-
 public class GameScreen implements Screen, InputProcessor {
 
 	// BUGS && updates
@@ -48,17 +46,17 @@ public class GameScreen implements Screen, InputProcessor {
 	
 
 	// SetUp
-	private GameFreak game;
-	private SpriteBatch world;
-	private OrthographicCamera camera;
-	private Viewport gamePort;
+	private final GameFreak game;
+	private final SpriteBatch world;
+	private final OrthographicCamera camera;
+	private final Viewport gamePort;
 	private MapLoader loadMap;
-	private HashMap<String, MapLoader> load = new HashMap<String, MapLoader>();
+	private final HashMap<String, MapLoader> load = new HashMap<>();
 
 	// player
 	public Player player;
 	private int speed = 1;
-	private float speedMultiplier = 1;
+	private final float speedMultiplier = 1;
 	private boolean moveUp;
 	private boolean moveDown;
 	private boolean moveLeft;
@@ -70,22 +68,21 @@ public class GameScreen implements Screen, InputProcessor {
 	private boolean mistyTalk = false;
 
 	// Words
-	private BitmapFont word;
+	private final BitmapFont word;
 	private String text = "";
 	private String newString;
 	private int index;
 	private boolean lockPrint = true;
-	private Queue<String> words = new LinkedList<String>();
+	private final Queue<String> words = new LinkedList<>();
 
 	// sprite etc
-	private Starters starter = new Starters();
-	private Mother mother = new Mother();
-	private Oak oak = new Oak();
-	private NurseJoy nurse = new NurseJoy();
-	private Sprite speach;
-	private PokeBall Bulbasaur, Charmander, Squirtle;
-	private Misty misty = new Misty();
-	private ArrayList<PokeBall> pokeBalls = new ArrayList<PokeBall>();
+	private final Starters starter = new Starters();
+	private final Mother mother = new Mother();
+	private final Oak oak = new Oak();
+	private final NurseJoy nurse = new NurseJoy();
+	private final Sprite speech;
+	private final Misty misty = new Misty();
+	private final ArrayList<PokeBall> pokeBalls = new ArrayList<>();
 	private Pokemon pokemon;
 
 	// sounds/music
@@ -105,7 +102,7 @@ public class GameScreen implements Screen, InputProcessor {
 		// Camera and map
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		camera.zoom = (float) 0.4f;
+		camera.zoom = 0.4f;
 		gamePort = new ScreenViewport(camera);
 
 		// load maps
@@ -116,19 +113,19 @@ public class GameScreen implements Screen, InputProcessor {
 		loadMap = load.get("Map/house.tmx");
 
 		// speech bubble
-		speach = new Sprite(new Texture("FSEStuff/SpeachBubble.png"));
-		speach.setSize(250, 30);
+		speech = new Sprite(new Texture("FSEStuff/SpeachBubble.png"));
+		speech.setSize(250, 30);
 
 		// starters
-		Bulbasaur = new PokeBall(Names.BULBASAUR);
-		Bulbasaur.setPosition(228, 230);
-		Charmander = new PokeBall(Names.SQUIRTLE);
-		Charmander.setPosition(243, 230);
-		Squirtle = new PokeBall(Names.CHARMANDER);
-		Squirtle.setPosition(258, 230);
-		pokeBalls.add(Bulbasaur);
-		pokeBalls.add(Charmander);
-		pokeBalls.add(Squirtle);
+		PokeBall bulbasaur = new PokeBall(Names.BULBASAUR);
+		bulbasaur.setPosition(228, 230);
+		PokeBall charmander = new PokeBall(Names.SQUIRTLE);
+		charmander.setPosition(243, 230);
+		PokeBall squirtle = new PokeBall(Names.CHARMANDER);
+		squirtle.setPosition(258, 230);
+		pokeBalls.add(bulbasaur);
+		pokeBalls.add(charmander);
+		pokeBalls.add(squirtle);
 
 		// words
 		word = new BitmapFont();
@@ -155,7 +152,7 @@ public class GameScreen implements Screen, InputProcessor {
 
 		// update sprite positions with player
 		starter.updatePos(player);
-		speach.setPosition(player.getX() - 105, player.getY() - 60);
+		speech.setPosition(player.getX() - 105, player.getY() - 60);
 
 		// prof oaks lab stuff
 		starter.viewStarters(pokeBalls, words, text, player, starter);
@@ -166,7 +163,7 @@ public class GameScreen implements Screen, InputProcessor {
 		move();
 		MapCollisions();
 
-		// re spawn if loses battle
+		// re-spawn if loses battle
 		if (starter.hasPokemon()) {
 			respawn();
 		}
@@ -176,7 +173,7 @@ public class GameScreen implements Screen, InputProcessor {
 		word.getData().setScale(0.6f, 0.6f);
 
 		// print text on screen - handles all text
-		if (lockPrint == true && !words.isEmpty()) {
+		if (lockPrint && !words.isEmpty()) {
 			printText(words.remove());
 		}
 
@@ -227,8 +224,8 @@ public class GameScreen implements Screen, InputProcessor {
 		// 1st batch for players etc
 		world.begin();
 		if (location.equals("lab")) {
-			for (int i = 0; i < pokeBalls.size(); i++) {
-				pokeBalls.get(i).draw(world);
+			for (PokeBall pokeBall : pokeBalls) {
+				pokeBall.draw(world);
 			}
 		}
 		oak.draw(world, location);
@@ -238,7 +235,7 @@ public class GameScreen implements Screen, InputProcessor {
 		nurse.draw(world, location);
 		world.end();
 
-		// render world layers - infront of player
+		// render world layers - in front of player
 		if (location.equalsIgnoreCase("world")) {
 			loadMap.drawForegroundLayers();
 		}
@@ -246,7 +243,7 @@ public class GameScreen implements Screen, InputProcessor {
 		// 2nd batch for drawing over top of everything
 		world.begin();
 		if (!words.isEmpty() || !(text.isEmpty())) {
-			speach.draw(world);
+			speech.draw(world);
 		}
 		starter.draw(world, location);
 		word.draw(world, text, player.getX() - 90, player.getY() - 40);
@@ -255,7 +252,7 @@ public class GameScreen implements Screen, InputProcessor {
 	}
 
 	public void respawn() {
-		 //loads home, re spawns player with fully healed pokemon
+		 //loads home, re-spawns player with fully healed pokemon
 		if (player.getPokemon().get(0).getHealth() < 1) {
 			loadMap = load.get("Map/house.tmx");
 			location = "home";
@@ -285,29 +282,13 @@ public class GameScreen implements Screen, InputProcessor {
 
 	private void pollKeyboard() {
 		// player movement
-		if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-			moveUp = true;
-		} else {
-			moveUp = false;
-		}
-		if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-			moveDown = true;
-		} else {
-			moveDown = false;
-		}
-		if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-			moveRight = true;
-		} else {
-			moveRight = false;
-		}
-		if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-			moveLeft = true;
-		} else {
-			moveLeft = false;
-		}
+		moveUp = Gdx.input.isKeyPressed(Input.Keys.W);
+		moveDown = Gdx.input.isKeyPressed(Input.Keys.S);
+		moveRight = Gdx.input.isKeyPressed(Input.Keys.D);
+		moveLeft = Gdx.input.isKeyPressed(Input.Keys.A);
 	}
 
-	private void hitwall() {
+	private void hitWall() {
 		// stops the player when hitting walls
 		if (moveUp) {
 			player.translateY(-speed * speedMultiplier);
@@ -332,7 +313,7 @@ public class GameScreen implements Screen, InputProcessor {
 					Rectangle wallRect = ((RectangleMapObject) object).getRectangle();
 					if (Intersector.overlaps(playerRect, wallRect)) {
 						if (object.getName().equalsIgnoreCase("wall")) {
-							hitwall();
+							hitWall();
 						}
 					}
 				}
@@ -366,12 +347,16 @@ public class GameScreen implements Screen, InputProcessor {
 						} else if (object.getName().equalsIgnoreCase("leave")) {
 							door.play();
 							loadMap = load.get("Map/PokemonLG.tmx");
-							if (location.equals("home")) {
-								player.setPosition(305, 536);
-							} else if (location.equals("lab")) {
-								player.setPosition(865, 424);
-							} else if (location.equals("PokeCenter")) {
-								player.setPosition(113, 2811);
+							switch (location) {
+								case "home":
+									player.setPosition(305, 536);
+									break;
+								case "lab":
+									player.setPosition(865, 424);
+									break;
+								case "PokeCenter":
+									player.setPosition(113, 2811);
+									break;
 							}
 							location = "world";
 							// upstairs
@@ -403,7 +388,7 @@ public class GameScreen implements Screen, InputProcessor {
 							// cant leave town yet
 						} else if (object.getName().equals("noPokemon")) {
 							if (!starter.hasPokemon()) {
-								hitwall();
+								hitWall();
 							}
 							// revive pokemon at pokeCenter
 						} else if (object.getName().equalsIgnoreCase("Revive") && location.equals("PokeCenter")) {
@@ -429,7 +414,7 @@ public class GameScreen implements Screen, InputProcessor {
 							if (words.isEmpty() && Gdx.input.isKeyPressed(Input.Keys.SPACE) && location.equals("home")
 									&& text.isEmpty()) {
 								click.play();
-								if (returnHome == false) {
+								if (!returnHome) {
 									if (!starter.hasPokemon()) {
 										words.addAll(mother.getText(starter));
 									} else {
@@ -443,7 +428,7 @@ public class GameScreen implements Screen, InputProcessor {
 							} else if (words.isEmpty() && Gdx.input.isKeyPressed(Input.Keys.SPACE)
 									&& location.equals("lab") && text.isEmpty()) {
 								click.play();
-								if (returnHome == false) {
+								if (!returnHome) {
 									words.addAll(oak.getText(starter));
 								} else {
 									Oak();
@@ -470,7 +455,7 @@ public class GameScreen implements Screen, InputProcessor {
 												words.add("congratulations! you beat me!");
 												words.add("Here take this");
 												words.add("...");
-												words.add("Klem obtained the Rain Badge!");
+												words.add("You obtained the Rain Badge!");
 												words.add("You are now a Pokemon Master!");
 												mistyTalk = true;
 											}
@@ -489,11 +474,11 @@ public class GameScreen implements Screen, InputProcessor {
 		Rectangle oakRect = oak.getBoundingRectangle().setSize(16, 16);
 		Rectangle mistyRect = misty.getBoundingRectangle(16, 16);
 		if (Intersector.overlaps(motherRect, playerRect)) {
-			hitwall();
+			hitWall();
 		} else if (Intersector.overlaps(oakRect, playerRect)) {
-			hitwall();
+			hitWall();
 		} else if (Intersector.overlaps(mistyRect, playerRect)) {
-			hitwall();
+			hitWall();
 		}
 	}
 
@@ -555,11 +540,9 @@ public class GameScreen implements Screen, InputProcessor {
 	 * @return
 	 */
 	public boolean foundPokemon() {
-		// find random pokemon 3/1800 chance
-		int random = (int) (Math.random() * 500);
-		if (random == 13) {
-			random = 0;
-			return true;
+		if(moveUp || moveDown || moveLeft || moveRight) {
+			int random = (int) (Math.random() * 300);
+			return random == 13;
 		}
 		return false;
 	}
@@ -570,7 +553,7 @@ public class GameScreen implements Screen, InputProcessor {
 			if (returnHome) {
 				player.getPokemon().get(0).setHealth(player.getPokemon().get(0).getMaxHealth());
 				player.getPokemon().get(0).setAttackMultiplier(1);
-				words.add("Welcome home Klem, you and your pokemon look tired..");
+				words.add("Welcome home son, you and your pokemon look tired..");
 				words.add("Ill rest your pokemon for you!");
 				words.add("...........");
 				words.add("Your pokemon are fully revived and ready to battle");
@@ -587,7 +570,7 @@ public class GameScreen implements Screen, InputProcessor {
 
 	public void Oak() {
 		// once left town and returned :)
-		words.add("Hey there Klem!");
+		words.add("Hey there!");
 		words.add("Looks like you and your pokemon have gotten much stronger!");
 		words.add("GoodLuck defeating the Gym in the big City!");
 		words.add("Misty is a tough gym leader!");

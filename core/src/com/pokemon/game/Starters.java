@@ -14,13 +14,13 @@ import com.badlogic.gdx.math.Rectangle;
 public class Starters implements ICharacter {
 	
 	//global variables
-	private Sprite sprite;
-	private Texture img1, img2, img3;
+	private final Sprite sprite;
+	private final Texture img1, img2, img3;
 	private boolean draw;
 	private boolean hasStarter = false;
 	private String name = "";
-	private Sound sound;
-	private Sound click;
+	private final Sound sound;
+	private final Sound click;
 
 	public Starters() {
 		//sprite creation
@@ -88,7 +88,7 @@ public class Starters implements ICharacter {
 	public void choosePokemon(Player player, ArrayList<PokeBall> pokeBalls, Queue<String> words, Oak oak,
 			Starters starter) {
 		Rectangle playerRect = player.getBoundingRectangle();
-		if (hasStarter == false && draw == false) {
+		if (!hasStarter && !draw) {
 			for (int i = 0; i < pokeBalls.size() - 2; i++) {
 				if (playerRect.overlaps(pokeBalls.get(i).getBoundingRectangle().setSize(1, 1))) {
 					if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
@@ -161,7 +161,7 @@ public class Starters implements ICharacter {
 
 	@Override
 	public ArrayList<String> getText(Starters starter) {
-		ArrayList<String> text = new ArrayList<String>();
+		ArrayList<String> text = new ArrayList<>();
 		text.add("I see! BULBASAUR the grass-type is your choice?");
 		text.add("Hmm! SQUIRTLE the water-type is your choice?");
 		text.add("Ah! CHARMANDER the fire-type is your choice?");

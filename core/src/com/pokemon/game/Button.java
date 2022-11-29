@@ -6,13 +6,11 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Rectangle;
 
 public abstract class Button {
-	
-	//globals
-	private GlyphLayout glyph;
+
 	private Rectangle moveRect;
-	private BitmapFont text;
-	private String string;
-	private float x, y;
+	private final BitmapFont text;
+	private final String string;
+	private final float x, y;
 
 	/**
 	 * @param text
@@ -26,7 +24,8 @@ public abstract class Button {
 		this.x = x;
 		this.y = y;
 		if (text != null) {
-			glyph = new GlyphLayout(text, string);
+			//globals
+			GlyphLayout glyph = new GlyphLayout(text, string);
 			moveRect = new Rectangle(x, y - glyph.height, glyph.width, glyph.height);
 			text.setColor(0, 0, 0, 1);
 		}

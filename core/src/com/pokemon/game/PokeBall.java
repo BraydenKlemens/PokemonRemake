@@ -8,8 +8,8 @@ import com.badlogic.gdx.math.Rectangle;
 public class PokeBall {
 
 	//gloabls
-	private Sprite sprite;
-	private Names names;
+	private final Sprite sprite;
+	private final Names names;
 
 	/**
 	 * @param names

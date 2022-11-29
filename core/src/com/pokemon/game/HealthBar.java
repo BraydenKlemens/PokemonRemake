@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 public class HealthBar {
 	
 	//globals
-	private Sprite sprite;
-	private int height;
+	private final Sprite sprite;
+	private final int height;
 
 	/**
 	 * @param x
@@ -31,9 +31,9 @@ public class HealthBar {
 	}
 
 	/**
-	 * @param healthbarWidth
+	 * @param healthBarWidth
 	 */
-	public void setWidth(int healthbarWidth) {
-		sprite.setSize(healthbarWidth, height);
+	public void setWidth(int healthBarWidth) {
+		sprite.setSize(healthBarWidth, height);
 	}
 }

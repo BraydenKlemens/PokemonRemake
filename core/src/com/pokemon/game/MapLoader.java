@@ -11,12 +11,12 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 public class MapLoader {
 
 	// Map
-	private TiledMap tiledMap;
-	private TiledMapRenderer tiledMapRenderer;
-	private MapProperties prop;
-	private int mapW, mapH, tilePixelW, tilePixelH, mapPixelW, mapPixelH;
-	private int[] backgroundlayers = { 0, 1, 2 };
-	private int[] foregroundlayers = { 3, 4 };
+	private final TiledMap tiledMap;
+	private final TiledMapRenderer tiledMapRenderer;
+	private final int mapPixelW;
+	private final int mapPixelH;
+	private final int[] backgroundlayers = { 0, 1, 2 };
+	private final int[] foregroundlayers = { 3, 4 };
 	
 	//i have a hashmap to save the name with the map
 
@@ -27,11 +27,11 @@ public class MapLoader {
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 
 		// Map size - pixels
-		prop = tiledMap.getProperties();
-		mapW = prop.get("width", Integer.class);
-		mapH = prop.get("height", Integer.class);
-		tilePixelW = prop.get("tilewidth", Integer.class);
-		tilePixelH = prop.get("tileheight", Integer.class);
+		MapProperties prop = tiledMap.getProperties();
+		int mapW = prop.get("width", Integer.class);
+		int mapH = prop.get("height", Integer.class);
+		int tilePixelW = prop.get("tilewidth", Integer.class);
+		int tilePixelH = prop.get("tileheight", Integer.class);
 		
 		//get map pixel properties
 		mapPixelW = mapW * tilePixelW;
