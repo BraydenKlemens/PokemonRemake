@@ -21,13 +21,15 @@ public class Pokemon {
 	private Move[] moves = new Move[4];
 	private final int w, h;
 
+	private final String owner;
+
 	// create static pokemon allows access to them - wild pokemon stats
 	public static Pokemon bulbasaur = new Pokemon(new Texture("FSEStuff/BulbasaurFront.png"),
-			new Texture("FSEStuff/BulbasaurBack.png"), 100, 90, Type.GRASS, "BULBASAUR", 24, 14, 14, 5);
+			new Texture("FSEStuff/BulbasaurBack.png"), 100, 90, Type.GRASS, "BULBASAUR", 24, 14, 14, 5, "none");
 	public static Pokemon charmander = new Pokemon(new Texture("FSEStuff/CharmanderFront.png"),
-			new Texture("FSEStuff/CharmanderBack.png"), 100, 100, Type.FIRE, "CHARMANDER", 23, 13, 14, 5);
+			new Texture("FSEStuff/CharmanderBack.png"), 100, 100, Type.FIRE, "CHARMANDER", 23, 13, 14, 5, "none");
 	public static Pokemon squirtle = new Pokemon(new Texture("FSEStuff/SquirtleFront.png"),
-			new Texture("FSEStuff/SquirtleBack.png"), 110, 115, Type.WATER, "SQUIRTLE", 24, 16, 14, 5);
+			new Texture("FSEStuff/SquirtleBack.png"), 110, 115, Type.WATER, "SQUIRTLE", 24, 16, 14, 5, "none");
 
 	/**
 	 * @param front
@@ -42,7 +44,7 @@ public class Pokemon {
 	 * @param level
 	 */
 	public Pokemon(Texture front, Texture back, int w, int h, Type type, String name, int health, int defence,
-			int attack, int level) {
+			int attack, int level, String owner) {
 		this.back = back;
 		this.front = front;
 		this.type = type;
@@ -54,6 +56,7 @@ public class Pokemon {
 		this.level = level;
 		this.w = w;
 		this.h = h;
+		this.owner = owner;
 		sprite = new Sprite(back);
 	}
 
@@ -217,6 +220,10 @@ public class Pokemon {
 	 */
 	public Move[] getMoves() {
 		return moves;
+	}
+
+	public String getOwner(){
+		return owner;
 	}
 
 	/**

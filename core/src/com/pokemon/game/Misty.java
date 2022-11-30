@@ -17,7 +17,7 @@ public class Misty implements ICharacter {
 		sprite = new Sprite(new Texture("FSEStuff/Misty.png"));
 		sprite.setPosition(1277, 2932);
 		pokemon = new Pokemon(new Texture("Battle/star.png"), new Texture("Battle/star.png"), 100, 100, Type.WATER,
-				"STARMIE", 40, 15, 15, 10);
+				"STARMIE", 40, 15, 15, 10, "trainer");
 		pokemon.setMoves(new Move[] { Move.WaterPulse, Move.Screech, Move.nullMove, Move.nullMove });
 	}
 

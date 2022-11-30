@@ -34,7 +34,7 @@ public class BattleScreen implements Screen, InputProcessor {
 	// Lists
 	private final Queue<String> words = new LinkedList<>();
 	private final ArrayList<BattleButton> fight = new ArrayList<>();
-	private final ArrayList<HealthBar> healthbars = new ArrayList<>();
+	private final ArrayList<HealthBar> healthBars = new ArrayList<>();
 
 	// booleans ints
 	private boolean moveScreenOpen = false;
@@ -42,7 +42,7 @@ public class BattleScreen implements Screen, InputProcessor {
 	private boolean play = false;
 	private boolean lockPrint = true;
 	private int index = 0;
-	private final int healthbarWidth = 145;
+	private final int healthBarWidth = 145;
 
 	// audio
 	private Music battle, wild;
@@ -122,7 +122,7 @@ public class BattleScreen implements Screen, InputProcessor {
 
 		// buttons and health bars
 		runBattleButtons();
-		healthBars();
+		updateHealthBars();
 
 		// audio
 		click = Gdx.audio.newSound(Gdx.files.internal("Music/click.wav"));
@@ -229,7 +229,7 @@ public class BattleScreen implements Screen, InputProcessor {
 		textBubble.draw(game.batch);
 		bar1.draw(game.batch);
 		bar2.draw(game.batch);
-		for (HealthBar healthbar : healthbars) {
+		for (HealthBar healthbar : healthBars) {
 			healthbar.draw(game.batch);
 		}
 		// health bars
@@ -451,10 +451,10 @@ public class BattleScreen implements Screen, InputProcessor {
 		}, 0.035f, 0.035f);
 	}
 
-	public void healthBars() {
+	public void updateHealthBars() {
 		// adds new health bars for each pokemon
-		healthbars.add(new HealthBar(560, 158, healthbarWidth, 50));
-		healthbars.add(new HealthBar(160, 344, healthbarWidth, 50));
+		healthBars.add(new HealthBar(560, 158, healthBarWidth, 50));
+		healthBars.add(new HealthBar(160, 344, healthBarWidth, 50));
 	}
 
 	/**
@@ -466,8 +466,8 @@ public class BattleScreen implements Screen, InputProcessor {
 		double ownerHealths = owner.getHealth();
 		double difference = maxOwnerHealth - ownerHealths;
 		double percentage = (difference / maxOwnerHealth);
-		double width = percentage * healthbarWidth;
-		healthbars.get(0).setWidth((int) (healthbarWidth - width));
+		double width = percentage * healthBarWidth;
+		healthBars.get(0).setWidth((int) (healthBarWidth - width));
 	}
 
 	/**
@@ -479,8 +479,8 @@ public class BattleScreen implements Screen, InputProcessor {
 		double ownerHealths = defender.getHealth();
 		double difference = maxOwnerHealth - ownerHealths;
 		double percentage = (difference / maxOwnerHealth);
-		double width = percentage * healthbarWidth;
-		healthbars.get(1).setWidth((int) (healthbarWidth - width));
+		double width = percentage * healthBarWidth;
+		healthBars.get(1).setWidth((int) (healthBarWidth - width));
 	}
 
 	/**
@@ -665,9 +665,10 @@ public class BattleScreen implements Screen, InputProcessor {
 	@Override
 	public void hide() {
 		// resets health / attack when battle is over
-		poke1.setAttackMultiplier(1);
-		poke2.setAttackMultiplier(1);
-		poke2.setHealth(poke2.getMaxHealth());
+		if(poke2.getOwner().equals("none")){
+			poke2.setHealth(poke2.getMaxHealth());
+			poke2.setAttackMultiplier(1);
+		}
 		battle.stop();
 		wild.stop();
 	}

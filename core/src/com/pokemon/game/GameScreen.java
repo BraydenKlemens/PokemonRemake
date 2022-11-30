@@ -446,23 +446,8 @@ public class GameScreen implements Screen, InputProcessor {
 										}
 									}, 2f);
 								}
-								if (!mistyTalk) {
-									Timer.schedule(new Timer.Task() {
-
-										@Override
-										public void run() {
-											if (misty.getPokemon().getHealth() < 1) {
-												words.add("Congratulations! you beat me!");
-												words.add("Here take this");
-												words.add("...");
-												words.add("You obtained the Rain Badge!");
-												words.add("You are now a Pokemon Master!");
-												mistyTalk = true;
-											}else{
-												fight = false;
-											}
-										}
-									}, 3f);
+								if(fight){
+									checkMistyWin();
 								}
 							}
 						}
@@ -481,6 +466,19 @@ public class GameScreen implements Screen, InputProcessor {
 			hitWall();
 		} else if (Intersector.overlaps(mistyRect, playerRect)) {
 			hitWall();
+		}
+	}
+
+	public void checkMistyWin(){
+		if (misty.getPokemon().getHealth() < 1 && location.equals("world") && !mistyTalk) {
+			words.add("Congratulations! you beat me!");
+			words.add("Here take this");
+			words.add("...");
+			words.add("You obtained the Rain Badge!");
+			words.add("You are now a Pokemon Master!");
+			mistyTalk = true;
+		}else{
+			fight = false;
 		}
 	}
 
