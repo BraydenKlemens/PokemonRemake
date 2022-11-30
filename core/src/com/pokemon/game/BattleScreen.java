@@ -265,7 +265,7 @@ public class BattleScreen implements Screen, InputProcessor {
 		text.draw(game.batch, poke1.getName(), 460, 228);
 		text.draw(game.batch, Integer.toString(poke1.getLevel()), 690, 228);
 		text.draw(game.batch, poke2.getName(), 55, 415);
-		text.draw(game.batch, Integer.toString(poke1.getLevel()), 285, 415);
+		text.draw(game.batch, Integer.toString(poke2.getLevel()), 285, 415);
 
 		text.draw(game.batch, poke1.getHealth() + " / " + poke1.getMaxHealth(), 610,
 				175);

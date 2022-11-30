@@ -484,19 +484,25 @@ public class GameScreen implements Screen, InputProcessor {
 	 */
 	public Pokemon generatePokemon() {
 		// picks random number return given pokemon - wild pokemon
+		int max = player.getPokemon().get(0).getLevel();
+		int min = 3;
 		int rand = (int) Math.floor(Math.random() * 3);
+		int randLevel = min + (int)(Math.random() * ((max - min) + 1));
 		switch (rand) {
 		case 0:
-			Pokemon pokemon = Pokemon.bulbasaur;
+			Pokemon pokemon = new Pokemon(new Texture("FSEStuff/BulbasaurFront.png"),
+					new Texture("FSEStuff/BulbasaurBack.png"), 100, 90, Type.GRASS, "BULBASAUR", 24, 14, 14, randLevel, "none");
 			pokemon.setMoves(new Move[] { Move.VineWhip, Move.Growl, Move.Tackle, Move.nullMove });
 			return pokemon;
 		case 1:
-			Pokemon pokemon1 = Pokemon.charmander;
+			Pokemon pokemon1 = new Pokemon(new Texture("FSEStuff/CharmanderFront.png"),
+					new Texture("FSEStuff/CharmanderBack.png"), 100, 100, Type.FIRE, "CHARMANDER", 23, 13, 14, randLevel, "none");
 			pokemon1.setMoves(new Move[] { Move.Ember, Move.Growl, Move.Tackle, Move.nullMove });
 			return pokemon1;
 
 		case 2:
-			Pokemon pokemon2 = Pokemon.squirtle;
+			Pokemon pokemon2 = new Pokemon(new Texture("FSEStuff/SquirtleFront.png"),
+					new Texture("FSEStuff/SquirtleBack.png"), 110, 115, Type.WATER, "SQUIRTLE", 24, 16, 14, randLevel, "none");
 			pokemon2.setMoves(new Move[] { Move.Bubble, Move.Growl, Move.Tackle, Move.nullMove });
 			return pokemon2;
 		default:
