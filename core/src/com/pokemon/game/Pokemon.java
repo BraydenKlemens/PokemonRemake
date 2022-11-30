@@ -13,7 +13,7 @@ public class Pokemon {
 	private int health;
 	private final float defence;
 	private float attack;
-	private final int maxHealth;
+	private int maxHealth;
 	private float attackMultiplier = 1;
 	private final Type type;
 	private final String name;
@@ -222,6 +222,7 @@ public class Pokemon {
 		if(exp == Math.floor(level/2)){
 			exp = 0;
 			level++;
+			maxHealth+=2;
 		}
 		widthPercent = exp / Math.floor(level/2);
 	}
