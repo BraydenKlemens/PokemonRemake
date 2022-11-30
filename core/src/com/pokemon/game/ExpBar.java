@@ -18,7 +18,7 @@ public class ExpBar {
      */
     public ExpBar(int x, int y, int width, int height) {
         this.height = height;
-        sprite = new Sprite(new Texture("Battle/ExpBar.png"));
+        sprite = new Sprite(new Texture("Battle/expbar.png"));
         sprite.setSize(width, height);
         sprite.setPosition(x, y);
     }

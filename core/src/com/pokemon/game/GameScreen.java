@@ -56,7 +56,7 @@ public class GameScreen implements Screen, InputProcessor {
 	// player
 	public Player player;
 	private int speed = 1;
-	private final float speedMultiplier = 2;
+	private final float speedMultiplier = 1;
 	private boolean moveUp;
 	private boolean moveDown;
 	private boolean moveLeft;
