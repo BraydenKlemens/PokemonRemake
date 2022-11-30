@@ -202,6 +202,7 @@ public class BattleScreen implements Screen, InputProcessor {
 					actionHandler.addAction(new RunnableAction(new Runnable() {
 						@Override
 						public void run() {
+							poke1.incLevel();
 							game.setScreen(game.gameScreen);
 						}
 					}), actionHandler.getIndex() + 2);
@@ -255,8 +256,11 @@ public class BattleScreen implements Screen, InputProcessor {
 		// pokemon
 		poke1.draw(game.batch);
 		poke2.draw(game.batch);
-		text.draw(game.batch, poke1.getName(), 460, 230);
-		text.draw(game.batch, poke2.getName(), 55, 422);
+		text.draw(game.batch, poke1.getName(), 460, 228);
+		text.draw(game.batch, Integer.toString(poke1.getLevel()), 690, 228);
+		text.draw(game.batch, poke2.getName(), 55, 415);
+		text.draw(game.batch, Integer.toString(poke1.getLevel()), 285, 415);
+
 		text.draw(game.batch, poke1.getHealth() + " / " + poke1.getMaxHealth(), 610,
 				175);
 		// text

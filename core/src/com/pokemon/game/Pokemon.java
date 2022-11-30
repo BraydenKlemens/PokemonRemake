@@ -15,12 +15,12 @@ public class Pokemon {
 	private float attack;
 	private final int maxHealth;
 	private float attackMultiplier = 1;
-	private final int level;
 	private final Type type;
 	private final String name;
 	private Move[] moves = new Move[4];
 	private final int w, h;
-
+	private int level;
+	private int exp;
 	private final String owner;
 
 	// create static pokemon allows access to them - wild pokemon stats
@@ -213,6 +213,14 @@ public class Pokemon {
 	 */
 	public int getLevel() {
 		return level;
+	}
+
+	public void incLevel(){
+		exp++;
+		if(exp == Math.floor(level/2)){
+			exp = 0;
+			level++;
+		}
 	}
 
 	/**

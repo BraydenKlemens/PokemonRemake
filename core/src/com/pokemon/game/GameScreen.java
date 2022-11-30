@@ -255,6 +255,7 @@ public class GameScreen implements Screen, InputProcessor {
 	public void respawn() {
 		 //loads home, re-spawns player with fully healed pokemon
 		if (player.getPokemon().get(0).getHealth() < 1) {
+			fight = false;
 			loadMap = load.get("Map/house.tmx");
 			location = "home";
 			player.setPosition(100, 610);

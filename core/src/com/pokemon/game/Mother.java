@@ -40,6 +40,8 @@ public class Mother implements ICharacter {
 			text.add("Im going to miss you son!");
 			text.add("try to visit once and a while...");
 			text.add("I will give your POKeMON a rest!");
+			text.add("Remember, you can always level up..");
+			text.add("your POKeMON if they are not strong enough!");
 		}
 		return text;
 	}
