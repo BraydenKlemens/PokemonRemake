@@ -41,6 +41,7 @@ public class BattleScreen implements Screen, InputProcessor {
 	private boolean useAttack = false;
 	private boolean play = false;
 	private boolean lockPrint = true;
+	private boolean trainerBattle = false;
 	private int index = 0;
 	private final int healthBarWidth = 145;
 
@@ -350,31 +351,49 @@ public class BattleScreen implements Screen, InputProcessor {
 
 		fight.add(new BattleButton(620f, 25f, 50f, 25f) {
 			// run sets screen back to game screen
+
 			@Override
 			public void onClicked() {
-				actionHandler.addAction(new RunnableAction(new Runnable() {
-					@Override
-					public void run() {
-						// play words
-						lockPrint = true;
-						useAttack = words.add(poke1.getName() + " got away safely!");
-					}
-				}));
+				if(poke2.getOwner().equals("trainer")) trainerBattle = true;
 
-				// delay
-				actionHandler.addAction(new DelayAction(3));
+				if(trainerBattle) {
+					click.play();
+					useAttack = true;
+					lockPrint = true;
+					words.add("You cant run from a trainer!");
+					assert words.peek() != null;
+					Timer.schedule(new Timer.Task() {
 
-				run.play();
+						@Override
+						public void run() {
+							useAttack = false;
+							lockPrint = true;
+							words.add("what will " + poke1.getName() + " do?");
+						}
+						// waits until text is done
+					}, words.peek().length() * 0.035f + 0.1f);
+				}else{
+					actionHandler.addAction(new RunnableAction(new Runnable() {
+						@Override
+						public void run() {
+							// play words
+							lockPrint = true;
+							useAttack = words.add(poke1.getName() + " got away safely!");
+						}
+					}));
 
-				actionHandler.addAction(new RunnableAction(new Runnable() {
-					@Override
-					public void run() {
-						// set back
-						game.setScreen(game.gameScreen);
-					}
-				}));
-
-				doEvents = true;
+					// delay
+					actionHandler.addAction(new DelayAction(3));
+					run.play();
+					actionHandler.addAction(new RunnableAction(new Runnable() {
+						@Override
+						public void run() {
+							// set back
+							game.setScreen(game.gameScreen);
+						}
+					}));
+					doEvents = true;
+				}
 			}
 		});
 
@@ -532,7 +551,8 @@ public class BattleScreen implements Screen, InputProcessor {
 			@Override
 			public void run() {
 				int computerMove = (int) Math.floor(Math.random() * poke2.getNumOfMoves());
-				if(poke2.getHealth() < (poke2.getMaxHealth() / 2)) computerMove = 0;
+				if(poke2.getHealth() < (poke2.getMaxHealth() / 2) && poke2.getOwner().equals("none")) computerMove = 0;
+				if(poke2.getHealth() < 10 && poke2.getOwner().equals("trainer")) computerMove = 0;
 				Move move = poke2.getMove(computerMove);
 				if (poke2.getHealth() > 0) {
 					useMove(poke2, poke1, move);

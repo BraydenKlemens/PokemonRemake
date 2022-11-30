@@ -56,7 +56,7 @@ public class GameScreen implements Screen, InputProcessor {
 	// player
 	public Player player;
 	private int speed = 1;
-	private final float speedMultiplier = 2;
+	private final float speedMultiplier = 1;
 	private boolean moveUp;
 	private boolean moveDown;
 	private boolean moveLeft;
@@ -162,6 +162,7 @@ public class GameScreen implements Screen, InputProcessor {
 		pollKeyboard();
 		move();
 		MapCollisions();
+		checkMistyWin();
 
 		// re-spawn if loses battle
 		if (starter.hasPokemon()) {
@@ -446,9 +447,6 @@ public class GameScreen implements Screen, InputProcessor {
 										}
 									}, 2f);
 								}
-								if(fight){
-									checkMistyWin();
-								}
 							}
 						}
 					}
@@ -477,8 +475,6 @@ public class GameScreen implements Screen, InputProcessor {
 			words.add("You obtained the Rain Badge!");
 			words.add("You are now a Pokemon Master!");
 			mistyTalk = true;
-		}else{
-			fight = false;
 		}
 	}
 

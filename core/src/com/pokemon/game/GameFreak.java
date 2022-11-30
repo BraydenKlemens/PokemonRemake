@@ -13,7 +13,7 @@ public class GameFreak extends Game {
 		//game batch start screen
 		batch = new SpriteBatch();
 		gameScreen = new GameScreen(this, new Player());
-		setScreen(gameScreen);
+		setScreen(new StartScreen(this));
 	}
 
 	@Override
