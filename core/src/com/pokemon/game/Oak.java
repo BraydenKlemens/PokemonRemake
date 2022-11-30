@@ -41,8 +41,8 @@ public class Oak implements ICharacter {
 			text.add("You obtained the Poke-ball from professor Oak.");
 			text.add("Wonderful choice, " + starter.getName() + " will be a joy to raise!");
 			text.add("Now that you have your first POKeMON...");
-			text.add("you should go see your mom before you leave!");
-			text.add("She may have something to offer!");
+			text.add("you should go see your mom before you leave.");
+			text.add("She may have good advice!");
 		}
 		return text;
 	}

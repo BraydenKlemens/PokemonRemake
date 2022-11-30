@@ -227,4 +227,8 @@ public class Pokemon {
 			this.attackMultiplier = attackMultiplier;
 		}
 	}
+
+	public void resetAttackMultiplier() {
+		this.attackMultiplier = 1;
+	}
 }

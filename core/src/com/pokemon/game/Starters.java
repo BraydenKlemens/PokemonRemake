@@ -99,7 +99,7 @@ public class Starters implements ICharacter {
 						sound.play();
 						Pokemon pokemon = new Pokemon(Pokemon.bulbasaur.front, Pokemon.bulbasaur.back, 100, 90,
 								Type.GRASS, "BULBASAUR", 25, 18, 20, 5);
-						pokemon.setMoves(new Move[] { Move.VineWhip, Move.Growl, Move.nullMove, Move.nullMove });
+						pokemon.setMoves(new Move[] { Move.VineWhip, Move.Growl, Move.Tackle, Move.nullMove });
 						pokemon.setTexture(0);
 						player.getPokemon().add(pokemon);
 						name = pokeBalls.get(i).getName().toString();
@@ -112,7 +112,7 @@ public class Starters implements ICharacter {
 						sound.play();
 						Pokemon pokemon = new Pokemon(Pokemon.squirtle.front, Pokemon.squirtle.back, 110, 115,
 								Type.WATER, "SQUIRTLE", 25, 20, 18, 5);
-						pokemon.setMoves(new Move[] { Move.Bubble, Move.Growl, Move.nullMove, Move.nullMove });
+						pokemon.setMoves(new Move[] { Move.Bubble, Move.Growl, Move.Tackle, Move.nullMove });
 						pokemon.setTexture(0);
 						player.getPokemon().add(pokemon);
 						name = pokeBalls.get(i + 1).getName().toString();
@@ -124,8 +124,8 @@ public class Starters implements ICharacter {
 					if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
 						sound.play();
 						Pokemon pokemon = new Pokemon(Pokemon.charmander.front, Pokemon.charmander.back, 100, 100,
-								Type.FIRE, "CHARMANDER", 25, 18, 19, 5);
-						pokemon.setMoves(new Move[] { Move.Ember, Move.Growl, Move.nullMove, Move.nullMove});
+								Type.FIRE, "CHARMANDER", 25, 18, 21, 5);
+						pokemon.setMoves(new Move[] { Move.Ember, Move.Growl, Move.Tackle, Move.nullMove});
 						pokemon.setTexture(0);
 						player.getPokemon().add(pokemon);
 						name = pokeBalls.get(i + 2).getName().toString();

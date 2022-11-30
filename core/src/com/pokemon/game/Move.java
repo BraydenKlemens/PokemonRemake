@@ -10,12 +10,14 @@ public class Move {
 
 	// create static moves allow access
 	public static Move nullMove = new Move("", Type.NORMAL, Category.PASSIVE, 0);
-	public static Move VineWhip = new Move("VINEWHIP", Type.GRASS, Category.PHYSICAL, 45f);
+	public static Move VineWhip = new Move("VINEWHIP", Type.GRASS, Category.PHYSICAL, 40f);
 	public static Move Ember = new Move("EMBER", Type.FIRE, Category.PHYSICAL, 40f);
 	public static Move Bubble = new Move("BUBBLE", Type.WATER, Category.PHYSICAL, 40f);
 	public static Move Growl = new Move("GROWL", Type.NORMAL, Category.PASSIVE, 0f);
-	public static Move WaterPulse = new Move("WATER PULSE", Type.WATER, Category.PHYSICAL, 50f);
+	public static Move WaterPulse = new Move("WATER PULSE", Type.WATER, Category.PHYSICAL, 45f);
 	public static Move Screech = new Move("SCREECH", Type.NORMAL, Category.PASSIVE, 0f);
+	public static Move Tackle = new Move("TACKLE", Type.NORMAL, Category.PHYSICAL, 40f);
+
 
 	/**
 	 * @param name

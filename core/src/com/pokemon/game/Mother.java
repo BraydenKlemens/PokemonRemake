@@ -33,7 +33,7 @@ public class Mother implements ICharacter {
 			text.add("Morning, Welcome to the World of POKeMON.");
 			text.add("You are finally old enough to get your...");
 			text.add("own Pokemon and battle gyms!");
-			text.add("You should seek Professor Oak for in his lab.");
+			text.add("You should seek Professor Oak in his lab.");
 			text.add("Remember that you cannot leave town...");
 			text.add("until you have a Pokemon!");
 		} else {

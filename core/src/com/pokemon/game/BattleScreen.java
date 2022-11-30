@@ -308,11 +308,14 @@ public class BattleScreen implements Screen, InputProcessor {
 		button3 = new Button(text, moves[2].getName(), 50, 50) {
 			@Override
 			public void onClicked() {
+				click.play();
 				RunnableAction action = new RunnableAction(new Runnable() {
 					@Override
 					public void run() {
 						// starts actions
-						useMove(poke1, poke2, poke1.getMove(2));
+						if (poke1.getHealth() > 0) {
+							useMove(poke1, poke2, poke1.getMove(2));
+						}
 					}
 				});
 				setUpTurn(action);
@@ -529,6 +532,7 @@ public class BattleScreen implements Screen, InputProcessor {
 			@Override
 			public void run() {
 				int computerMove = (int) Math.floor(Math.random() * poke2.getNumOfMoves());
+				if(poke2.getHealth() < (poke2.getMaxHealth() / 2)) computerMove = 0;
 				Move move = poke2.getMove(computerMove);
 				if (poke2.getHealth() > 0) {
 					useMove(poke2, poke1, move);
@@ -573,13 +577,24 @@ public class BattleScreen implements Screen, InputProcessor {
 					}
 				}), actionHandler.getIndex() + 2);
 			} else if (effective == 0.5) {
-
 				actionHandler.addAction(new RunnableAction(new Runnable() {
 
 					@Override
 					public void run() {
 						lockPrint = true;
 						words.add("It's not very effective...");
+						assert words.peek() != null;
+						actionHandler.addAction(new DelayAction(words.peek().length() * 0.035f + 0.5f),
+								actionHandler.getIndex() + 3);
+					}
+				}), actionHandler.getIndex() + 2);
+			} else if (effective == 1) {
+				actionHandler.addAction(new RunnableAction(new Runnable() {
+
+					@Override
+					public void run() {
+						lockPrint = true;
+						words.add(defendingPokemon.getName() + " was hurt");
 						assert words.peek() != null;
 						actionHandler.addAction(new DelayAction(words.peek().length() * 0.035f + 0.5f),
 								actionHandler.getIndex() + 3);

@@ -56,7 +56,7 @@ public class GameScreen implements Screen, InputProcessor {
 	// player
 	public Player player;
 	private int speed = 1;
-	private final float speedMultiplier = 1;
+	private final float speedMultiplier = 2;
 	private boolean moveUp;
 	private boolean moveDown;
 	private boolean moveLeft;
@@ -257,9 +257,9 @@ public class GameScreen implements Screen, InputProcessor {
 			loadMap = load.get("Map/house.tmx");
 			location = "home";
 			player.setPosition(100, 610);
-			player.getPokemon().get(0).setHealth(0);
+			player.getPokemon().get(0).setHealth(player.getPokemon().get(0).getMaxHealth() / 2);
+			player.getPokemon().get(0).resetAttackMultiplier();
 			words.add("You blacked out...");
-			lockPrint = true;
 		}
 	}
 
@@ -451,13 +451,15 @@ public class GameScreen implements Screen, InputProcessor {
 
 										@Override
 										public void run() {
-											if (player.getPokemon().get(0).getHealth() > 0) {
-												words.add("congratulations! you beat me!");
+											if (misty.getPokemon().getHealth() < 1) {
+												words.add("Congratulations! you beat me!");
 												words.add("Here take this");
 												words.add("...");
 												words.add("You obtained the Rain Badge!");
 												words.add("You are now a Pokemon Master!");
 												mistyTalk = true;
+											}else{
+												fight = false;
 											}
 										}
 									}, 3f);
@@ -491,16 +493,16 @@ public class GameScreen implements Screen, InputProcessor {
 		switch (rand) {
 		case 0:
 			Pokemon pokemon = Pokemon.bulbasaur;
-			pokemon.setMoves(new Move[] { Move.VineWhip, Move.Growl, Move.nullMove, Move.nullMove });
+			pokemon.setMoves(new Move[] { Move.VineWhip, Move.Growl, Move.Tackle, Move.nullMove });
 			return pokemon;
 		case 1:
 			Pokemon pokemon1 = Pokemon.charmander;
-			pokemon1.setMoves(new Move[] { Move.Ember, Move.Growl, Move.nullMove, Move.nullMove });
+			pokemon1.setMoves(new Move[] { Move.Ember, Move.Growl, Move.Tackle, Move.nullMove });
 			return pokemon1;
 
 		case 2:
 			Pokemon pokemon2 = Pokemon.squirtle;
-			pokemon2.setMoves(new Move[] { Move.Bubble, Move.Growl, Move.nullMove, Move.nullMove });
+			pokemon2.setMoves(new Move[] { Move.Bubble, Move.Growl, Move.Tackle, Move.nullMove });
 			return pokemon2;
 		default:
 			return null;
@@ -552,7 +554,7 @@ public class GameScreen implements Screen, InputProcessor {
 		if (starter.hasPokemon()) {
 			if (returnHome) {
 				player.getPokemon().get(0).setHealth(player.getPokemon().get(0).getMaxHealth());
-				player.getPokemon().get(0).setAttackMultiplier(1);
+				player.getPokemon().get(0).resetAttackMultiplier();
 				words.add("Welcome home son, you and your pokemon look tired..");
 				words.add("Ill rest your pokemon for you!");
 				words.add("...........");
@@ -565,7 +567,7 @@ public class GameScreen implements Screen, InputProcessor {
 	public void pokeCenter() {
 		// revives pokemon
 		player.getPokemon().get(0).setHealth(player.getPokemon().get(0).getMaxHealth());
-		player.getPokemon().get(0).setAttackMultiplier(1);
+		player.getPokemon().get(0).resetAttackMultiplier();
 	}
 
 	public void Oak() {
