@@ -30,6 +30,7 @@ public class BattleScreen implements Screen, InputProcessor {
 	private BitmapFont comm;
 	private Button button1, button2, button3, button4;
 	private final Pokemon poke1, poke2;
+	private ExpBar expBar;
 
 	// Lists
 	private final Queue<String> words = new LinkedList<>();
@@ -44,6 +45,8 @@ public class BattleScreen implements Screen, InputProcessor {
 	private boolean trainerBattle = false;
 	private int index = 0;
 	private final int healthBarWidth = 145;
+
+	private final int expBarWidth = 195;
 
 	// audio
 	private Music battle, wild;
@@ -123,7 +126,8 @@ public class BattleScreen implements Screen, InputProcessor {
 
 		// buttons and health bars
 		runBattleButtons();
-		updateHealthBars();
+		setHealthBars();
+		setExpBar();
 
 		// audio
 		click = Gdx.audio.newSound(Gdx.files.internal("Music/click.wav"));
@@ -159,6 +163,7 @@ public class BattleScreen implements Screen, InputProcessor {
 		// health bars
 		updateOwnerHealthBars(poke1);
 		updateDefenderHealthBars(poke2);
+		updateExpBar(poke1);
 
 		// if true events it runs the events
 		draw();
@@ -237,6 +242,7 @@ public class BattleScreen implements Screen, InputProcessor {
 		// health bars
 		ownerHealth.draw(game.batch);
 		defenderHealth.draw(game.batch);
+		expBar.draw(game.batch);
 
 		// move/fight interfaces
 		if (!useAttack) {
@@ -474,11 +480,21 @@ public class BattleScreen implements Screen, InputProcessor {
 		}, 0.035f, 0.035f);
 	}
 
-	public void updateHealthBars() {
+	public void setHealthBars() {
 		// adds new health bars for each pokemon
 		healthBars.add(new HealthBar(560, 158, healthBarWidth, 50));
 		healthBars.add(new HealthBar(160, 344, healthBarWidth, 50));
 	}
+
+	public void setExpBar() {
+		expBar = new ExpBar(510, 136, 0, 7);
+	}
+
+	private void updateExpBar(Pokemon poke1) {
+		double width = poke1.getWidthPercent() * expBarWidth;
+		expBar.setWidth((int) width);
+	}
+
 
 	/**
 	 * @param owner
@@ -505,6 +521,7 @@ public class BattleScreen implements Screen, InputProcessor {
 		double width = percentage * healthBarWidth;
 		healthBars.get(1).setWidth((int) (healthBarWidth - width));
 	}
+
 
 	/**
 	 * @param playerAction

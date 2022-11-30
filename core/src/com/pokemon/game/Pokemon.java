@@ -21,6 +21,8 @@ public class Pokemon {
 	private final int w, h;
 	private int level;
 	private int exp;
+
+	private double widthPercent;
 	private final String owner;
 
 	// create static pokemon allows access to them - wild pokemon stats
@@ -221,7 +223,10 @@ public class Pokemon {
 			exp = 0;
 			level++;
 		}
+		widthPercent = exp / Math.floor(level/2);
 	}
+
+	public double getWidthPercent(){return widthPercent;}
 
 	/**
 	 * @return

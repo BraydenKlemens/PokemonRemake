@@ -8,6 +8,7 @@ import com.pokemon.game.GameFreak;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+		config.setForegroundFPS(120);
 		config.setTitle("Pokemon Leaf Green");
 		config.setWindowedMode(750, 480);
 		new Lwjgl3Application(new GameFreak(), config);
